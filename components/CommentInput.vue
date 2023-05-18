@@ -12,19 +12,20 @@ export default {
         }
     },
     computed: {
-        ...mapState(useMainStore, ['comments'])
+        ...mapState(useMainStore, ['comments']),
     },
     methods: {
         ...mapActions(useMainStore, ['submitComment']),
         async handleSubmit(event: any) {
-            event.preventDefault()
+            event.preventDefault();
             await this.submitComment({
                 commentId: this.comments[0].commentId + 1,
                 body: this.body,
                 postId: Array.isArray(this.postId) ? this.postId[0] : this.postId,
                 name: 'You',
                 date: new Date().toString(),
-            })
+            });
+            this.body = '';
         }
     },
 

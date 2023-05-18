@@ -23,7 +23,7 @@ export default {
                 'text-gray-700',
                 view === 'batch' ? 'text-base line-clamp-1' : ''
             ]">{{ body }}</p>
-            <NuxtLink :to="{ path: `/posts/${id}` }">
+            <NuxtLink v-if="view === 'batch'" :to="{ path: `/posts/${id}` }">
                 <p class="text-blue-700 text-base cursor-pointer">click here to see the full post</p>
             </NuxtLink>
         </div>

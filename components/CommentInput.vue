@@ -1,12 +1,44 @@
+<script lang="ts">
+import { mapActions, mapState } from 'pinia';
+import { useMainStore } from '~/store';
+export default {
+    name: 'CommentInput',
+    props: {
+        postId: String,
+    },
+    data() {
+        return {
+            body: '',
+        }
+    },
+    computed: {
+        ...mapState(useMainStore, ['comments'])
+    },
+    methods: {
+        ...mapActions(useMainStore, ['submitComment']),
+        async handleSubmit(event: any) {
+            event.preventDefault()
+            await this.submitComment({
+                commentId: this.comments[0].commentId + 1,
+                body: this.body,
+                postId: Array.isArray(this.postId) ? this.postId[0] : this.postId,
+                name: 'You',
+                date: new Date().toString(),
+            })
+        }
+    },
+
+}
+</script>
 <template>
     <div class="flex items-center justify-center shadow-lg mt-3 w-full">
-        <form class="w-full bg-white rounded-lg px-4 pt-2">
+        <form class="w-full bg-white rounded-lg px-4 pt-2" @submit="handleSubmit">
             <div class="flex flex-wrap -mx-3 mb-6">
                 <h2 class="px-4 pt-3 pb-2 text-gray-800 text-lg">Add a new comment</h2>
                 <div class="w-full md:w-full px-3 mb-2 mt-2">
                     <textarea
                         class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-                        name="body" placeholder='Type Your Comment' required></textarea>
+                        name="body" v-model="body" placeholder='Type Your Comment' required></textarea>
                 </div>
                 <div class="w-full md:w-full flex items-start md:w-full px-3">
                     <div class="-mr-1">

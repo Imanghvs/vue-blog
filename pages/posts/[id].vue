@@ -9,5 +9,6 @@ const post = store.selectedPost;
     <div class="place-self-center">
         <Post :title="post.title" :body="post.body" :imageUrl="post.imageUrl" :id="post.id" view="single"
             class="place-self-center" />
+        <CommentInput />
     </div>
 </template>

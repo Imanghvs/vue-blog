@@ -12,10 +12,7 @@ export default {
 }
 </script>
 <template>
-    <div :class="[
-        view === 'batch' ? 'max-w-2xl' : 'max-w-4xl',
-        'rounded overflow-hidden shadow-lg',
-    ]">
+    <div class="max-w-4xl rounded overflow-hidden shadow-lg">
         <img class="w-full" :src="imageUrl" :alt="imageAlt">
         <div class="px-6 py-4">
             <div class="font-bold text-xl mb-2">{{ title }}</div>

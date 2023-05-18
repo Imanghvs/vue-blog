@@ -6,6 +6,6 @@ await store.fetchAllPosts();
 <template>
     <div class="space-y-5 my-5 flex flex-col place-self-center">
         <Post v-for="post in store.posts" :title="post.title" :body="post.body" :imageUrl="post.imageUrl" :id="post.id"
-            class="place-self-center" />
+            view="batch" class="place-self-center" />
     </div>
 </template>

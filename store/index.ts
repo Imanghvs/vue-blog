@@ -12,7 +12,7 @@ export const useMainStore = defineStore('main', {
                 .value as IPost[];
             this.posts = rawPosts.map((post: IPost) => ({
                 ...post,
-                image: '/yellow-frog.jpg',
+                imageUrl: '/yellow-frog.jpg',
                 imageAlt: 'Yellow frog photo',
             }))
         },
@@ -22,7 +22,7 @@ export const useMainStore = defineStore('main', {
                 .value as IPost;
             this.selectedPost = {
                 ...rawPost,
-                image: '/yellow-frog.jpg',
+                imageUrl: '/yellow-frog.jpg',
                 imageAlt: 'Yellow frog photo',
             }
         }

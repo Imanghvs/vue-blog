@@ -43,11 +43,11 @@ export default {
                     <textarea
                         class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-400 focus:outline-none focus:bg-white"
                         name="body" v-model="body" placeholder='Type Your Comment' required maxlength="512">
-                                </textarea>
+                    </textarea>
                 </div>
                 <div class="w-full md:w-full flex items-start md:w-full px-3">
                     <div class="-mr-1">
-                        <input type='submit' disabled :class="[
+                        <input type='submit' :disabled="body.trim().length < 2" :class="[
                             body.trim().length > 2 ? 'cursor-pointer bg-white hover:bg-gray-100 text-gray-700' : 'bg-gray-200 text-gray-400',
                             'font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1'
                         ]" value='Post Comment' />

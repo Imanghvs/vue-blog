@@ -1,11 +1,5 @@
-<script setup lang="ts">
-import { useMainStore } from '~/store';
-const store = useMainStore();
-await store.fetchAllPosts();
+<script lang="ts">
 </script>
 <template>
-    <div class="space-y-5 my-5 flex flex-col place-self-center">
-        <Post v-for="post in store.posts" :title="post.title" :body="post.body" :imageUrl="post.imageUrl" :id="post.id"
-            view="batch" class="place-self-center" />
-    </div>
+    <BatchPosts class="flex flex-col place-self-center" />
 </template>

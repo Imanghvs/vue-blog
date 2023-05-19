@@ -36,13 +36,14 @@ export const useMainStore = defineStore('main', {
     }),
     actions: {
         async fetchAllPosts() {
-            const rawPosts = (await useFetch('https://jsonplaceholder.typicode.com/posts'))
+            const rawPosts = await useFetch('https://jsonplaceholder.typicode.com/posts')
                 .data
                 .value as IPost[];
             this.posts = rawPosts
-                .slice(0, 5)
-                .map(appendImageToPost)
-                .map(makeTextsLonger);
+                ?.slice(0, 5)
+                ?.map(appendImageToPost)
+                ?.map(makeTextsLonger)
+                || [];
         },
         async fetchPost(id: string) {
             const rawPost = (await useFetch(`https://jsonplaceholder.typicode.com/posts/${id}`))

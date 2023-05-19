@@ -12,8 +12,8 @@ export default {
 }
 </script>
 <template>
-    <div class="max-w-4xl rounded overflow-hidden shadow-lg">
-        <img class="w-full" :src="imageUrl" :alt="imageAlt">
+    <div class="w-full mx-4 rounded overflow-hidden shadow-lg">
+        <img class="w-full aspect-video" :src="imageUrl" :alt="imageAlt">
         <div class="px-6 py-4">
             <div class="font-bold text-xl mb-2">{{ title }}</div>
             <p :class="[

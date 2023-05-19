@@ -1,6 +1,7 @@
 <script lang="ts">
 import { mapActions, mapState } from 'pinia';
 import { useMainStore } from '~/store';
+import SpinnerSVG from '~/assets/spinner.svg';
 export default {
     name: 'CommentInput',
     props: {
@@ -9,6 +10,7 @@ export default {
     data() {
         return {
             body: '',
+            submitting: false,
         }
     },
     computed: {
@@ -21,6 +23,7 @@ export default {
             if (this.body.trim().length < 2) {
                 return;
             }
+            this.submitting = true;
             await this.submitComment({
                 commentId: this.comments[0].commentId + 1,
                 body: this.body.trim(),
@@ -29,6 +32,7 @@ export default {
                 date: new Date().toString(),
             });
             this.body = '';
+            this.submitting = false;
         }
     },
 
@@ -43,15 +47,20 @@ export default {
                     <textarea
                         class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-400 focus:outline-none focus:bg-white"
                         name="body" v-model="body" placeholder='Type Your Comment' required maxlength="512">
-                    </textarea>
+                                                                                                                                                                                                    </textarea>
                 </div>
                 <div class="w-full md:w-full flex items-start md:w-full px-3">
-                    <div class="-mr-1">
-                        <input type='submit' :disabled="body.trim().length < 2" :class="[
+                    <div class="mr-1">
+                        <div v-if="submitting"
+                            class="bg-gray-200 h-8 text-gray-400 py-1 px-4 border border-gray-400 rounded-lg mr-1">
+                            <Loader class="w-full h-full" />
+                        </div>
+                        <input v-else type='submit' :disabled="body.trim().length < 2" :class="[
                             body.trim().length > 2 ? 'cursor-pointer bg-white hover:bg-gray-100 text-gray-700' : 'bg-gray-200 text-gray-400',
-                            'font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1'
+                            'h-8 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1'
                         ]" value='Post Comment' />
                     </div>
+
                 </div>
             </div>
         </form>

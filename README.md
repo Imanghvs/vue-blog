@@ -1,42 +1,32 @@
-# Nuxt 3 Minimal Starter
+# Vue Blog
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+It's a simple blog made with Nuxt3 by a Back-End Developer trying to learn Front-End.
 
-## Setup
+## What it is
 
-Make sure to install the dependencies:
+It's just a simple blog UI. On the main page you can see a list of posts - currently only 5 posts, later pagination will be added - and each post's body is clamped and if you open a post, you will see the full text along with all the comments.
+You may leave a new comment on any post you like and check the result.
+Every component has a skeleton for the loading phase.
+
+The layout is very simple and it is open to suggestions.
+
+Also the project is responsive.
+
+## Server & Data
+
+The project uses [jsonplaceholder](https://jsonplaceholder.typicode.com/) as the server,
+but currently just shows the first 5 posts (I should add pagination later).
+
+## Run the project
+
+It's enough to clone the project and run the following commands:
 
 ```bash
-# yarn
-yarn install
-
-# npm
 npm install
-
-# pnpm
-pnpm install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`
-
-```bash
 npm run dev
 ```
 
-## Production
+## Technologies
 
-Build the application for production:
+Nuxt3, pinia and Tailwind CSS are the main technologies in this project
 
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

@@ -1,11 +1,13 @@
 <script lang="ts">
 import { mapActions, mapState } from 'pinia';
 import { useMainStore } from '~/store';
-import SpinnerSVG from '~/assets/spinner.svg';
 export default {
     name: 'CommentInput',
     props: {
-        postId: String,
+        postId: {
+            type: Number,
+            required: true,
+        },
     },
     data() {
         return {
@@ -14,7 +16,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(useMainStore, ['comments']),
+        ...mapState(useMainStore, ['selectedPost']),
     },
     methods: {
         ...mapActions(useMainStore, ['submitComment']),
@@ -25,17 +27,15 @@ export default {
             }
             this.submitting = true;
             await this.submitComment({
-                commentId: this.comments[0].commentId + 1,
+                id: this?.selectedPost?.comments?.[0]?.id || 0 + 1,
                 body: this.body.trim(),
-                postId: Array.isArray(this.postId) ? this.postId[0] : this.postId,
+                postId: this.postId,
                 name: 'You',
-                date: new Date().toString(),
             });
             this.body = '';
             this.submitting = false;
         }
     },
-
 }
 </script>
 <template>
@@ -47,7 +47,7 @@ export default {
                     <textarea
                         class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-400 focus:outline-none focus:bg-white"
                         name="body" v-model="body" placeholder='Type Your Comment' required maxlength="512">
-                                                                                                                                                                                                    </textarea>
+                    </textarea>
                 </div>
                 <div class="w-full md:w-full flex items-start md:w-full px-3">
                     <div class="mr-1">

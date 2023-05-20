@@ -4,11 +4,6 @@ import { useMainStore } from '~/store';
 
 export default {
     name: 'BatchPosts',
-    data() {
-        return {
-            loading: true,
-        }
-    },
     computed: {
         ...mapState(useMainStore, ['posts']),
     },

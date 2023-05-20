@@ -1,4 +1,7 @@
 <script lang="ts">
+export default {
+    name: 'PostSkeleton',
+}
 </script>
 <template>
     <div class="w-full mx-4 py-4 rounded overflow-hidden shadow-lg animate-pulse">

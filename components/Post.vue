@@ -1,6 +1,7 @@
 <script lang="ts">
 
 export default {
+    name: 'Post',
     props: {
         id: Number,
         title: String,
